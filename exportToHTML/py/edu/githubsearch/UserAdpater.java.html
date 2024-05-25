@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>UserAdpater.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+UserAdpater.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">py</span><span class="s2">.</span><span class="s1">edu</span><span class="s2">.</span><span class="s1">githubsearch</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">com</span><span class="s2">.</span><span class="s1">squareup</span><span class="s2">.</span><span class="s1">picasso</span><span class="s2">.</span><span class="s1">Picasso</span><span class="s2">.</span><span class="s1">get</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Context</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">ViewGroup</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ArrayAdapter</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">ImageView</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">TextView</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">NonNull</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">androidx</span><span class="s2">.</span><span class="s1">annotation</span><span class="s2">.</span><span class="s1">Nullable</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+    <span class="s0">public class </span><span class="s1">UserAdpater </span><span class="s0">extends </span><span class="s1">ArrayAdapter</span><span class="s2">&lt;</span><span class="s1">User</span><span class="s2">&gt; {</span>
+        <span class="s0">public </span><span class="s1">UserAdpater</span><span class="s2">(</span><span class="s1">@NonNull Context context</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">User</span><span class="s2">&gt; </span><span class="s1">users</span><span class="s2">) {</span>
+
+            <span class="s0">super</span><span class="s2">(</span><span class="s1">context</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">item_users</span><span class="s2">, </span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">textViewItemUserLogin</span><span class="s2">, </span><span class="s1">users</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@NonNull</span>
+        <span class="s1">@Override</span>
+        <span class="s0">public </span><span class="s1">View getView</span><span class="s2">(</span><span class="s0">int </span><span class="s1">position</span><span class="s2">, </span><span class="s1">@Nullable View convertView</span><span class="s2">, </span><span class="s1">@NonNull ViewGroup parent</span><span class="s2">) {</span>
+            <span class="s1">View view </span><span class="s2">= </span><span class="s0">super</span><span class="s2">.</span><span class="s1">getView</span><span class="s2">(</span><span class="s1">position</span><span class="s2">, </span><span class="s1">convertView</span><span class="s2">, </span><span class="s1">parent</span><span class="s2">);</span>
+            <span class="s1">TextView urTextView </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">textviewItemUserUrl</span><span class="s2">);</span>
+            <span class="s1">User u </span><span class="s2">= </span><span class="s1">getItem</span><span class="s2">(</span><span class="s1">position</span><span class="s2">);</span>
+            <span class="s1">ImageView avatarImageView </span><span class="s2">= </span><span class="s1">view</span><span class="s2">.</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">imageViewItemUserAvatar</span><span class="s2">);</span>
+
+            <span class="s1">get</span><span class="s2">().</span><span class="s1">load</span><span class="s2">(</span><span class="s1">u</span><span class="s2">.</span><span class="s1">getAvatar_url</span><span class="s2">()).</span><span class="s1">into</span><span class="s2">(</span><span class="s1">avatarImageView</span><span class="s2">);</span>
+            <span class="s1">urTextView</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">u</span><span class="s2">.</span><span class="s1">getHtmlUrl</span><span class="s2">());</span>
+
+            <span class="s0">return </span><span class="s1">view</span><span class="s2">;</span>
+        <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

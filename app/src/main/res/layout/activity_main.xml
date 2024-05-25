@@ -1,0 +1,145 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Search a GitHub user" />
+
+    <LinearLayout
+        android:id="@+id/layout_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/searchViewLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageviewAvatar"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Name User GitHub"
+            android:textColor="#300868"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewUrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="https://github.com/user.url"
+            android:textColor="#aaa"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textviewLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location Info"
+            android:textColor="#aaa"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/buttonFollowers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="128 Followers"
+                android:drawableLeft="@drawable/ic_followers"
+                android:onClick="getFollowers" />
+
+            <Button
+                android:id="@+id/buttonFollowing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="64 Following"
+                android:drawableLeft="@drawable/ic_followings"
+                android:onClick="getFollowings" />
+        </LinearLayout>
+
+        <ListView
+            android:visibility="gone"
+            android:id="@+id/listviewUsers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/progressbarUsers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textviewError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Error Message"
+            android:textColor="#f00"
+            android:textSize="18sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/searchViewLogin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:src="@drawable/ic_search" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search a GitHub User by Login"
+            android:textColor="#CCC"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone" />
+</androidx.constraintlayout.widget.ConstraintLayout>
