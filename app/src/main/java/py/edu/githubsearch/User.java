@@ -4,21 +4,36 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.annotations.SerializedName;
 
+// Clase que representa un usuario de GitHub
 public class User {
 
+    // Nombre de usuario
     public String login;
+
+    // URL del avatar del usuario
     public String avatar_url;
 
+    // URL del perfil del usuario (utiliza SerializedName para mapear el nombre JSON a un nombre de campo diferente)
     @SerializedName("html_url")
     public String htmlUrl;
 
+    // Nombre completo del usuario
     public String name;
+
+    // Ubicación del usuario
     public String location;
+
+    // Número de repositorios públicos del usuario
     public String public_repos;
+
+    // Número de seguidores del usuario
     public String followers;
 
+    // Número de personas que el usuario está siguiendo (utiliza SerializedName para mapear)
     @SerializedName("following")
     public String followings;
+
+    // Métodos getter y setter para cada campo
 
     public String getHtmlUrl() {
         return htmlUrl;
@@ -84,8 +99,10 @@ public class User {
         this.followings = followings;
     }
 
+    // Sobrescribe el método toString para devolver el nombre de usuario
     @NonNull
     @Override
-    public String toString() { return this.login;}
-
+    public String toString() {
+        return this.login;
+    }
 }

@@ -27,21 +27,19 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+// Actividad principal que implementa Callback<User> para manejar las respuestas de Retrofit
 public class MainActivity extends AppCompatActivity implements Callback<User> {
 
+    // Declaración de las vistas y el servicio
     SearchView loginSearchView;
     ImageView avatarImageView;
     TextView nameTextView, urlTextView, locationTextView, errorTextView;
-
     LinearLayout successLayout, emptyLayout;
     ProgressBar progressBar, progressBarUser;
     ListView usersListView;
-
     Button followersButton, followingsButton;
     UserService service;
-
     User user;
-
     Callback<List<User>> callback;
 
     @SuppressLint("MissingInflatedId")
@@ -60,11 +58,12 @@ public class MainActivity extends AppCompatActivity implements Callback<User> {
         errorTextView = findViewById(R.id.textviewError);
         successLayout = findViewById(R.id.layout_success);
         emptyLayout = findViewById(R.id.layoutEmpty);
-        progressBarUser =findViewById(R.id.progressbar);
+        progressBarUser = findViewById(R.id.progressbar);
         usersListView = findViewById(R.id.listviewUsers);
         followersButton = findViewById(R.id.buttonFollowers);
         followingsButton = findViewById(R.id.buttonFollowing);
 
+        // Configuración del listener para los ítems del ListView
         usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements Callback<User> {
                 loginSearchView.setQuery(u.getLogin(), true);
             }
         });
-        // now to finish implement custom adapter to users ListView
 
         // Crear el servicio para la API de GitHub
         service = new RestAdapter
@@ -93,22 +91,20 @@ public class MainActivity extends AppCompatActivity implements Callback<User> {
                 return false;
             }
 
-
             @Override
             public boolean onQueryTextChange(String newText) {
-
                 return false;
             }
         });
 
+        // Callback para manejar la lista de usuarios seguidores o seguidos
         callback = new Callback<List<User>>() {
             @Override
             public void success(List<User> users, Response response) {
                 usersListView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
-                //set a user listView adapter
-                //ArrayAdapter<User> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1,users);
-                UserAdpater adapter = new UserAdpater(MainActivity.this,users);
+                // Establecer el adaptador personalizado para la lista de usuarios
+                UserAdapter adapter = new UserAdapter(MainActivity.this, users);
                 usersListView.setAdapter(adapter);
             }
 
@@ -116,8 +112,7 @@ public class MainActivity extends AppCompatActivity implements Callback<User> {
             public void failure(RetrofitError error) {
                 usersListView.setVisibility(View.GONE);
                 progressBar.setVisibility(View.GONE);
-
-                Toast.makeText(MainActivity.this,error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         };
 
@@ -135,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements Callback<User> {
         });
     }
 
+    // Método llamado cuando la solicitud Retrofit es exitosa
     @Override
     public void success(User user, Response response) {
         Log.d("MainActivity", "User received: " + user.getName());
@@ -154,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements Callback<User> {
         service.getUserFollowers(user.getLogin(), callback);
     }
 
+    // Método llamado cuando la solicitud Retrofit falla
     @Override
     public void failure(RetrofitError error) {
         Log.e("MainActivity", "Search failed: " + error.getLocalizedMessage());
@@ -163,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements Callback<User> {
         errorTextView.setText(error.getLocalizedMessage());
     }
 
+    // Método para obtener los seguidores del usuario
     public void getFollowers(View view) {
         Log.d("MainActivity", "Getting followers for user: " + user.getLogin());
         progressBarUser.setVisibility(View.VISIBLE);
@@ -170,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements Callback<User> {
         service.getUserFollowers(user.getLogin(), callback);
     }
 
+    // Método para obtener los seguidos del usuario
     public void getFollowings(View view) {
         Log.d("MainActivity", "Getting followings for user: " + user.getLogin());
         progressBarUser.setVisibility(View.VISIBLE);
